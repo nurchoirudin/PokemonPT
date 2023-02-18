@@ -11,6 +11,8 @@ import RxSwift
 import FloatingPanel
 
 class PokemonDetailVC: BaseViewController {
+    @IBOutlet weak var pokemonMoveHeightConstant: NSLayoutConstraint!
+    @IBOutlet weak var pokemonMoveTableView: UITableView!
     @IBOutlet weak var pokemonAbillitiesTableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var pokemonAbillitiesTableView: UITableView!
     @IBOutlet weak var pokemonWeightLabel: UILabel!
@@ -85,8 +87,13 @@ class PokemonDetailVC: BaseViewController {
     private func configureTableView(){
         pokemonAbillitiesTableView.delegate = self
         pokemonAbillitiesTableView.dataSource = self
-        let nibName = UINib(nibName: String(describing: PokemonAbillitiesCell.self), bundle: nil)
+        var nibName = UINib(nibName: String(describing: PokemonAbillitiesCell.self), bundle: nil)
         pokemonAbillitiesTableView.register(nibName, forCellReuseIdentifier: String(describing: PokemonAbillitiesCell.self))
+       
+        pokemonMoveTableView.delegate = self
+        pokemonMoveTableView.dataSource = self
+        nibName = UINib(nibName: String(describing: PokemonMoveCell.self), bundle: nil)
+        pokemonMoveTableView.register(nibName, forCellReuseIdentifier: String(describing: PokemonMoveCell.self))
     }
     
     
@@ -124,8 +131,13 @@ class PokemonDetailVC: BaseViewController {
         pokemonHeightLabel.text = "\(Double(model.height ?? 0) * 10 / 100) m" 
         pokemonTypeCollectionView.reloadData()
         pokemonAbillitiesTableView.reloadData()
-        guard let resultCount = viewModel.getPokemonDetailModel()?.abilities?.count else { return }
-        pokemonAbillitiesTableViewHeightConstraint.constant = CGFloat(resultCount * 44)
+        pokemonMoveTableView.reloadData()
+
+        guard let abilities = viewModel.getPokemonDetailModel()?.abilities?.count else { return }
+        guard let moves = viewModel.getPokemonDetailModel()?.moves?.count else { return }
+
+        pokemonAbillitiesTableViewHeightConstraint.constant = CGFloat(abilities * 44)
+        pokemonMoveHeightConstant.constant = CGFloat(moves * 49)
     }
 }
 
@@ -176,20 +188,35 @@ extension PokemonDetailVC: UICollectionViewDelegate, UICollectionViewDataSource,
 
 extension PokemonDetailVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let resultCount = viewModel.getPokemonDetailModel()?.abilities?.count else { return 0 }
-        return resultCount
-
+        if tableView == pokemonAbillitiesTableView {
+            guard let resultCount = viewModel.getPokemonDetailModel()?.abilities?.count else { return 0 }
+            return resultCount
+        } else if tableView == pokemonMoveTableView {
+            guard let resultCount = viewModel.getPokemonDetailModel()?.moves?.count else { return 0 }
+            return resultCount
+        } else {
+           return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PokemonAbillitiesCell.self), for: indexPath) as? PokemonAbillitiesCell else { return UITableViewCell() }
-        
-        cell.selectionStyle = .none
-        if let model = viewModel.getPokemonDetailModel()?.abilities {
-            cell.configureCell(model: model[indexPath.row])
+        if tableView == pokemonAbillitiesTableView {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PokemonAbillitiesCell.self), for: indexPath) as? PokemonAbillitiesCell else { return UITableViewCell() }
+            cell.selectionStyle = .none
+            if let model = viewModel.getPokemonDetailModel()?.abilities {
+                cell.configureCell(model: model[indexPath.row])
+            }
+            return cell
+        } else if tableView == pokemonMoveTableView {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PokemonMoveCell.self), for: indexPath) as? PokemonMoveCell else { return UITableViewCell() }
+            cell.selectionStyle = .none
+            if let model = viewModel.getPokemonDetailModel()?.moves {
+                cell.configureCell(model: model[indexPath.row])
+            }
+            return cell
+        } else {
+            return UITableViewCell()
         }
-
-        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

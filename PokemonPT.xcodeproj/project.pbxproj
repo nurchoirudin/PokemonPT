@@ -10,6 +10,8 @@
 		6E080159142CE61BDE76D336 /* Pods_PokemonPT_PokemonPTUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EFDEAE7268F9A762A0B604E /* Pods_PokemonPT_PokemonPTUITests.framework */; };
 		C88DF8179688C1395D1507FC /* Pods_PokemonPTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39AB803109B1C527824FAB63 /* Pods_PokemonPTTests.framework */; };
 		F6B2CF5E3E38243D7EC11759 /* Pods_PokemonPT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BDA3D5308E16DBBADD7D65 /* Pods_PokemonPT.framework */; };
+		FE11D41129A17F4C00AB991B /* PokemonMoveCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11D40F29A17F4C00AB991B /* PokemonMoveCell.swift */; };
+		FE11D41229A17F4C00AB991B /* PokemonMoveCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE11D41029A17F4C00AB991B /* PokemonMoveCell.xib */; };
 		FE51375B29A1252E00BB4675 /* MyPokemonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE51375929A1252E00BB4675 /* MyPokemonVC.swift */; };
 		FE51375C29A1252E00BB4675 /* MyPokemonVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE51375A29A1252E00BB4675 /* MyPokemonVC.xib */; };
 		FE51375F29A1292900BB4675 /* MyPokemonListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE51375E29A1292900BB4675 /* MyPokemonListViewModel.swift */; };
@@ -112,6 +114,8 @@
 		AD6FED43520B48FF9E862945 /* Pods-PokemonPT-PokemonPTUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonPT-PokemonPTUITests.debug.xcconfig"; path = "Target Support Files/Pods-PokemonPT-PokemonPTUITests/Pods-PokemonPT-PokemonPTUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D92E8FB1BD19CA3D15B60A09 /* Pods-PokemonPTTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonPTTests.debug.xcconfig"; path = "Target Support Files/Pods-PokemonPTTests/Pods-PokemonPTTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F4BBBEE290EAC60611C4978C /* Pods-PokemonPT-PokemonPTUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonPT-PokemonPTUITests.release.xcconfig"; path = "Target Support Files/Pods-PokemonPT-PokemonPTUITests/Pods-PokemonPT-PokemonPTUITests.release.xcconfig"; sourceTree = "<group>"; };
+		FE11D40F29A17F4C00AB991B /* PokemonMoveCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonMoveCell.swift; sourceTree = "<group>"; };
+		FE11D41029A17F4C00AB991B /* PokemonMoveCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PokemonMoveCell.xib; sourceTree = "<group>"; };
 		FE51375929A1252E00BB4675 /* MyPokemonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPokemonVC.swift; sourceTree = "<group>"; };
 		FE51375A29A1252E00BB4675 /* MyPokemonVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPokemonVC.xib; sourceTree = "<group>"; };
 		FE51375E29A1292900BB4675 /* MyPokemonListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPokemonListViewModel.swift; sourceTree = "<group>"; };
@@ -631,6 +635,7 @@
 		FE618C3029A0EAA100D02C26 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				FEFD437C29A17D4E0091C90F /* PokemonMoveCell */,
 				FE618C3A29A1158A00D02C26 /* PokemonAbillitiesCell */,
 				FE618C3129A0EAA700D02C26 /* PokemonTypeCell */,
 			);
@@ -653,6 +658,15 @@
 				FE618C3C29A115AB00D02C26 /* PokemonAbillitiesCell.xib */,
 			);
 			path = PokemonAbillitiesCell;
+			sourceTree = "<group>";
+		};
+		FEFD437C29A17D4E0091C90F /* PokemonMoveCell */ = {
+			isa = PBXGroup;
+			children = (
+				FE11D40F29A17F4C00AB991B /* PokemonMoveCell.swift */,
+				FE11D41029A17F4C00AB991B /* PokemonMoveCell.xib */,
+			);
+			path = PokemonMoveCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -771,6 +785,7 @@
 				FE618C3E29A115AB00D02C26 /* PokemonAbillitiesCell.xib in Resources */,
 				FE618C2829A0D7D700D02C26 /* Barlow-Light.ttf in Resources */,
 				FE51376729A14B1A00BB4675 /* PokemonSaveModalVC.xib in Resources */,
+				FE11D41229A17F4C00AB991B /* PokemonMoveCell.xib in Resources */,
 				FE618C1029A0D27100D02C26 /* PokemonDetailVC.xib in Resources */,
 				FE618C2C29A0D7D700D02C26 /* Barlow-Regular.ttf in Resources */,
 				FE51377429A1621800BB4675 /* MyPokemonCell.xib in Resources */,
@@ -938,6 +953,7 @@
 				FE618C2F29A0DE9500D02C26 /* UIView+Extension.swift in Sources */,
 				FE618C0129A0D27100D02C26 /* ResponseErrorModel + Extension.swift in Sources */,
 				FE618C0B29A0D27100D02C26 /* PokemonDetailDataSource.swift in Sources */,
+				FE11D41129A17F4C00AB991B /* PokemonMoveCell.swift in Sources */,
 				FE618C0729A0D27100D02C26 /* BaseViewController.swift in Sources */,
 				FE51375B29A1252E00BB4675 /* MyPokemonVC.swift in Sources */,
 				FE618C0929A0D27100D02C26 /* PokemonDetailViewModel.swift in Sources */,
