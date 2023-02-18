@@ -8,7 +8,7 @@
 import Foundation
 
 struct MyPokemonListModel {
-    let id: UInt64?
+    let id: String?
     let pokemonId: Int?
     let pokemonImageUrl: String?
     let pokemonName: String?

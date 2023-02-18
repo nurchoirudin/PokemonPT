@@ -42,7 +42,7 @@ class PokemonSaveModalVC: BaseViewController {
             let pokemonId = model?.id
             let pokemonImageUrl = model?.getPokemonImageOriginal()
             let pokemonName = pokemonNameLabel.text
-            self.didSaveButton?(MyPokemonListModel(id: id, pokemonId: pokemonId, pokemonImageUrl: pokemonImageUrl, pokemonName: pokemonName))
+            self.didSaveButton?(MyPokemonListModel(id: "\(id)", pokemonId: pokemonId, pokemonImageUrl: pokemonImageUrl, pokemonName: pokemonName))
         }
     }
 }

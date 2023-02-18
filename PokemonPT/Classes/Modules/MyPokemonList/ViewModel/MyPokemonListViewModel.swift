@@ -29,7 +29,7 @@ class MyPokemonListViewModel: BaseViewModel {
             guard let result = try managedContext.fetch(fetchRequest) as? [NSManagedObject] else { return returnValue }
             result.forEach { model in
                 returnValue?.append(MyPokemonListModel(
-                    id: model.value(forKey: "id") as? UInt64,
+                    id: model.value(forKey: "id") as? String,
                     pokemonId: model.value(forKey: "pokemonId") as? Int,
                     pokemonImageUrl: model.value(forKey: "pokemonImageURL") as? String,
                     pokemonName: model.value(forKey: "pokemonName") as? String)
@@ -45,8 +45,8 @@ class MyPokemonListViewModel: BaseViewModel {
         self.state.accept(.loading)
         let managedContext = self.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "MyPokemon")
-        if let pokemonName = model.pokemonName {
-            fetchRequest.predicate = NSPredicate (format: "pokemonName == %@", pokemonName)
+        if let id = model.id {
+            fetchRequest.predicate = NSPredicate (format: "id == %@", id)
             do {
                 let result = try managedContext.fetch(fetchRequest)
                 for entity in result {
