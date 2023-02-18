@@ -1,0 +1,6 @@
+framework module Pods_PokemonPT {
+  umbrella header "Pods-PokemonPT-umbrella.h"
+
+  export *
+  module * { export * }
+}
